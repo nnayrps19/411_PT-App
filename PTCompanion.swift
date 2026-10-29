@@ -6,6 +6,17 @@
 //
 
 import Foundation
+import SwiftUI
 import SwiftData
 
+@main
+
+struct PTCompanionApp: App {
+    var body: some Scene {
+        WindowGroup{
+            ContentView()
+        }
+        .modelContainer(for: [Patient.self, Appointment.self])
+    }
+}
 
