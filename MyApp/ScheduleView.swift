@@ -12,6 +12,7 @@ struct ScheduleView: View {
     
     @Query(sort: \Appointment.date) private var appointments: [Appointment]
     @Environment(\.modelContext) private var modelContext
+    @State private var addAppointment = false
     
     var body: some View{
         NavigationStack {
@@ -26,13 +27,11 @@ struct ScheduleView: View {
             .navigationTitle("Appointments")
             .toolbar {
                 Button("Add", systemImage: "plus") {
-                    let patient = Patient(name: "John Doe", focusArea: "Knee")
-                    let appointment = Appointment(date: Date.now, durationMinutes: 60, notes: "Nil", patient: patient)
-                    
-                    modelContext.insert(patient)
-                    modelContext.insert(appointment)
-                    
+                    addAppointment = true
                 }
+            }
+            .sheet(isPresented: $addAppointment){
+                AppointmentFormView()
             }
         }
     }
