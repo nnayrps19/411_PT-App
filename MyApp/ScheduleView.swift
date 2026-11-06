@@ -40,5 +40,5 @@ struct ScheduleView: View {
 
 #Preview {
     ScheduleView()
-        .modelContainer(for: [Patient.self, Appointment.self], inMemory: true)
+        .modelContainer(for: [Patient.self, Appointment.self, AssignedExercise.self], inMemory: true)
 }

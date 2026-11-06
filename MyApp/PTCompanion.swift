@@ -16,7 +16,7 @@ struct PTCompanionApp: App {
         WindowGroup{
             ContentView()
         }
-        .modelContainer(for: [Patient.self, Appointment.self])
+        .modelContainer(for: [Patient.self, Appointment.self, AssignedExercise.self])
     }
 }
 

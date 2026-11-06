@@ -54,5 +54,5 @@ struct AppointmentFormView: View {
 
 #Preview {
     AppointmentFormView()
-        .modelContainer(for: [Patient.self, Appointment.self], inMemory: true)
+        .modelContainer(for: [Patient.self, Appointment.self, AssignedExercise.self], inMemory: true)
 }

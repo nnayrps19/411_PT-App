@@ -13,8 +13,12 @@ import SwiftData
 class Patient{
     var name: String
     var focusArea: String
+    
     @Relationship(deleteRule: .cascade, inverse: \Appointment.patient)
     var appointments: [Appointment] = []
+    
+    @Relationship(deleteRule: .cascade, inverse: \AssignedExercise.patient)
+    var assignedExercises: [AssignedExercise] = []
     
     init(name: String, focusArea: String){
         self.name = name
