@@ -33,3 +33,5 @@ struct WgerTranslation : Codable {
     let language : Int
     let descriptionSource : String
 }
+
+
