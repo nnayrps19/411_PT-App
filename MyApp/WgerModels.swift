@@ -17,6 +17,10 @@ struct WgerExercise : Codable, Identifiable {
     let category : WgerCategory
     let muscles : [WgerMuscle]
     let translations : [WgerTranslation]
+    
+    var englishName: String {
+        translations.first {$0.language == 2}?.name ?? "Unnamed exercise"
+    }
 }
 
 struct WgerCategory : Codable {

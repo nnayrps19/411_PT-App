@@ -8,21 +8,42 @@
 import SwiftUI
 
 struct ExerciseLibraryView: View {
+    
+    @State private var searchExercise = ""
+    @State private var exercises: [WgerExercise] = []
+    
     var body: some View{
-        Text("Exercise Library View")
-            .task {
-                do {
-                    let results = try await WgerService.searchExercises(term: "squat")
-                    print("Found \(results.count) exercises")
-                } catch {
-                    print("Error \(error)")
+        NavigationStack {
+            List(exercises) { exercise in
+                VStack(alignment: .leading){
+                    Text(exercise.englishName)
+                        .font(.headline)
+                    Text(exercise.category.name)
+                        .foregroundStyle(.secondary)
                 }
             }
+            .navigationTitle("Exercises")
+            .searchable(text: $searchExercise, prompt: "Search exercises")
+            .onSubmit(of: .search) {
+                Task {
+                    await search()
+                }
+            }
+            
+        }
+        
+    }
+    
+    private func search() async {
+        do {
+            exercises = try await WgerService.searchExercises(term: searchExercise)
+        } catch {
+            print("Error: \(error)")
+        }
     }
     
        
 }
 
 #Preview {
-    ExerciseLibraryView()
 }
