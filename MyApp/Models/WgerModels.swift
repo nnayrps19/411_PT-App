@@ -21,15 +21,21 @@ struct WgerExercise : Codable, Identifiable {
     var englishName: String {
         translations.first {$0.language == 2}?.name ?? "Unnamed exercise"
     }
+    
+    var englishDescription: String {
+        translations.first {$0.language == 2}?.descriptionSource ?? "No instruction available"
+    }
 }
 
 struct WgerCategory : Codable {
     let name : String
 }
 
-struct WgerMuscle : Codable {
+struct WgerMuscle : Codable, Identifiable {
+    let id : Int
     let name : String
     let nameEn : String
+    
 }
 
 struct WgerTranslation : Codable {

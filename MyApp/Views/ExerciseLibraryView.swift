@@ -15,13 +15,17 @@ struct ExerciseLibraryView: View {
     @State private var errorMessage: String? = nil
     
     var body: some View{
-        NavigationStack {
+        NavigationStack{
             List(exercises) { exercise in
-                VStack(alignment: .leading){
-                    Text(exercise.englishName)
-                        .font(.headline)
-                    Text(exercise.category.name)
-                        .foregroundStyle(.secondary)
+                NavigationLink {
+                    ExerciseDetailView(exercise: exercise)
+                } label: {
+                    VStack(alignment: .leading){
+                        Text(exercise.englishName)
+                            .font(.headline)
+                        Text(exercise.category.name)
+                            .foregroundStyle(.secondary)
+                    }
                 }
             }
             .navigationTitle("Exercises")
@@ -44,9 +48,7 @@ struct ExerciseLibraryView: View {
                                            systemImage: "magnifyingglass")
                 }
             }
-            
         }
-        
     }
     
     private func search() async {
